@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "bbaf288b-02cd-42ee-bbc5-e9cd223a0922",
+		"name": "Exercice Innso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Client Folder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                \"autorName\": \"test\",\r\n                \"message\": \"test message 2\",\r\n                \"canal\": \"MAIL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/message/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"message",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Message Response",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"autorName\": \"testfrfr\",\r\n    \"message\": \"Tout fonctionne\",\r\n    \"canal\": \"SMS\"\r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/message/new?reference=new-test2022-02-02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"message",
+						"new"
+					],
+					"query": [
+						{
+							"key": "reference",
+							"value": "new-test2022-02-02"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Client Folder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"reference\": \"new-test2022-02-02\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/update?referenceToSet=KA-186C",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"update"
+					],
+					"query": [
+						{
+							"key": "referenceToSet",
+							"value": "KA-186C"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
