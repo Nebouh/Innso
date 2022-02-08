@@ -1,11 +1,9 @@
 package com.innso.exercice.service;
 
-import java.util.List;
-
-import com.innso.exercice.dto.ClientFolder;
-import com.innso.exercice.dto.Message;
+import com.innso.exercice.entity.ClientFolder;
+import com.innso.exercice.entity.Message;
 
 public interface MessageService {
 
-	ClientFolder newMessage(List<ClientFolder> listClientFolder, Message message, String reference);
+	ClientFolder newMessage(Message message, String reference);
 }

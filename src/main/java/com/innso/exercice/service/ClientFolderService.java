@@ -2,8 +2,8 @@ package com.innso.exercice.service;
 
 import java.util.List;
 
-import com.innso.exercice.dto.ClientFolder;
-import com.innso.exercice.dto.Message;
+import com.innso.exercice.entity.ClientFolder;
+import com.innso.exercice.entity.Message;
 
 public interface ClientFolderService {
 	
@@ -19,7 +19,7 @@ public interface ClientFolderService {
 	 * @param reference
 	 * @return
 	 */
-	ClientFolder getClientFolderByReference(List<ClientFolder> listClientFolder, String reference);
+	ClientFolder getClientFolderByReference(String reference);
 	
 	/**
 	 * Update a client Folder with datas sent
@@ -28,12 +28,16 @@ public interface ClientFolderService {
 	 * @param reference
 	 * @return
 	 */
-	ClientFolder updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet);
+	Integer updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet);
 	
 	/**
 	 * 
 	 * @param reference
 	 * @return
 	 */
-	Boolean isExistClientFolder(List<ClientFolder> listClientFolder, String reference);
+	Boolean isExistClientFolder(String reference);
+	
+	List<ClientFolder> getAllClientFolder();
+	
+	ClientFolder saveOrUpdate(ClientFolder clientFolder);
 }

@@ -3,15 +3,16 @@ package com.innso.exercice.service.impl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import com.innso.exercice.dto.ClientFolder;
-import com.innso.exercice.dto.Message;
+import com.innso.exercice.entity.Canal;
+import com.innso.exercice.entity.ClientFolder;
+import com.innso.exercice.entity.Message;
+import com.innso.exercice.repository.MessageRepository;
 import com.innso.exercice.service.ClientFolderService;
 import com.innso.exercice.service.MessageService;
 
@@ -20,29 +21,31 @@ public class MessageServiceImpl implements MessageService {
 
 	@Autowired
 	private ClientFolderService clientFolderService;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 
 	@Override
-	public ClientFolder newMessage(List<ClientFolder> listClientFolder, Message message, String reference) {
+	public ClientFolder newMessage(Message message, String reference) {
 		
 		ClientFolder clientFolder = null;
 		
-		message.setMessageLocalDateTime(LocalDateTime.now());
+		message.setMessageLocalDateTime(LocalDateTime.now()); 
 		
-		if(StringUtils.isBlank(reference) && !clientFolderService.isExistClientFolder(listClientFolder, reference)) {
+		if(StringUtils.isBlank(reference) && !clientFolderService.isExistClientFolder(reference)) {
 			
 			clientFolder = clientFolderService.createClientFolder(message, createReference(message.getAutorName()));
 		} else {
-			clientFolder = clientFolderService.getClientFolderByReference(listClientFolder, reference);
 			
-			if(clientFolder == null) {
-				//FIXME Throw Exception here ?
-				return null;
-			}
+			clientFolder = clientFolderService.getClientFolderByReference(reference);
 			
-			if(CollectionUtils.isEmpty(clientFolder.getListMessage())) {
+			if(CollectionUtils.isEmpty(clientFolder.getListMessage())) { 
 				clientFolder.setListMessage(new ArrayList<>());
 			}
+			
 			clientFolder.getListMessage().add(message);
+			
+			messageRepository.addNewMessageToClientFolder(message.getAutorName(), message.getCanal(), reference, message.getMessageLocalDateTime(), clientFolder.getId());
 		}
 		
 		return clientFolder;

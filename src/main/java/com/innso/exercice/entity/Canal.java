@@ -1,4 +1,4 @@
-package com.innso.exercice.dto;
+package com.innso.exercice.entity;
 
 public enum Canal {
 	MAIL("MAIL"), SMS("SMS"), FACEBOOK("FACEBOOK"), TWITTER("TWITTER");
