@@ -28,7 +28,7 @@ public interface ClientFolderService {
 	 * @param reference
 	 * @return
 	 */
-	Integer updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet);
+	ClientFolder updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet);
 	
 	/**
 	 * 
@@ -39,5 +39,5 @@ public interface ClientFolderService {
 	
 	List<ClientFolder> getAllClientFolder();
 	
-	ClientFolder saveOrUpdate(ClientFolder clientFolder);
+	ClientFolder save(ClientFolder clientFolder);
 }

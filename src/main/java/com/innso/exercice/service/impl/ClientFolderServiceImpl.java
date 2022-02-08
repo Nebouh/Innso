@@ -22,7 +22,8 @@ public class ClientFolderServiceImpl implements ClientFolderService{
 
 	@Override
 	public ClientFolder createClientFolder(Message message, String reference) {
-		ClientFolder clientFolder = new ClientFolder(message.getAutorName(), LocalDate.now(), reference, new ArrayList<>());
+		ClientFolder clientFolder = new ClientFolder(message.getAutorName(), LocalDate.now(), reference);
+		
 		clientFolder.getListMessage().add(message);
 		
 		ClientFolder savedClientFolder = clientRepository.save(clientFolder);
@@ -42,9 +43,18 @@ public class ClientFolderServiceImpl implements ClientFolderService{
 	}
 	
 	@Override
-	public Integer updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet) {
-		clientFolderToModify.setReference(referenceToSet);
-		return clientRepository.updateReference(clientFolderToModify.getReference(), referenceToSet);
+	public ClientFolder updateClientFolder(ClientFolder clientFolderToModify, String referenceToSet) {
+		
+		Optional<ClientFolder> optClient = clientRepository.findById(clientFolderToModify.getId());
+		
+		ClientFolder clientFolder = null;
+		
+		if(optClient.isPresent()) {
+			optClient.get().setReference(referenceToSet);
+			clientFolder = clientRepository.save(optClient.get());
+		}
+		
+		return clientFolder;
 	}
 
 	@Override
@@ -60,7 +70,7 @@ public class ClientFolderServiceImpl implements ClientFolderService{
 	}
 
 	@Override
-	public ClientFolder saveOrUpdate(ClientFolder clientFolder) {
+	public ClientFolder save(ClientFolder clientFolder) {
 		return clientRepository.save(clientFolder);
 	}
 }

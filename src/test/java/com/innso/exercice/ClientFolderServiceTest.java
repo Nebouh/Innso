@@ -38,10 +38,9 @@ public class ClientFolderServiceTest {
 	@Test
 	public void testCreateClientFolder() {
 		Message message = new Message(LocalDateTime.now(), "test", "test message", Canal.FACEBOOK);
-		List<Message> listMessage = new ArrayList<>();
-		listMessage.add(message);
 		
-		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "test", listMessage);
+		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "test");
+		clientFolder.getListMessage().add(message);
 		
 		Mockito.when(clientRepository.save(Mockito.any())).thenReturn(clientFolder);
 		
@@ -71,11 +70,11 @@ public class ClientFolderServiceTest {
 	
 	@Test
 	public void testUpdateClientFolder() {
-		ClientFolder clientFolderToModify = new ClientFolder("test", LocalDate.now(), "testRef", null);
+		ClientFolder clientFolderToModify = new ClientFolder("test", LocalDate.now(), "testRef");
 		
 		Mockito.when(clientRepository.updateReference("", "")).thenReturn(1);
 
-		Integer result = clientFolderService.updateClientFolder(clientFolderToModify, "KA-18B6");
+		ClientFolder result = clientFolderService.updateClientFolder(clientFolderToModify, "KA-18B6");
 		
 		//Assert.assertEquals("KA-18B6", clientFolderToModify.getReference());
 	}

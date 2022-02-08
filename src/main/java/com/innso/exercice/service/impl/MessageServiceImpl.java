@@ -39,13 +39,10 @@ public class MessageServiceImpl implements MessageService {
 			
 			clientFolder = clientFolderService.getClientFolderByReference(reference);
 			
-			if(CollectionUtils.isEmpty(clientFolder.getListMessage())) { 
-				clientFolder.setListMessage(new ArrayList<>());
-			}
-			
 			clientFolder.getListMessage().add(message);
 			
-			messageRepository.addNewMessageToClientFolder(message.getAutorName(), message.getCanal(), reference, message.getMessageLocalDateTime(), clientFolder.getId());
+			//messageRepository.addNewMessageToClientFolder(message.getAutorName(), message.getCanal(), reference, message.getMessageLocalDateTime(), clientFolder.getId());
+			clientFolder = clientFolderService.save(clientFolder);
 		}
 		
 		return clientFolder;

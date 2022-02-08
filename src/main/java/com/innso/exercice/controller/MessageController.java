@@ -35,7 +35,7 @@ public class MessageController {
 	}
 	
 	@PostMapping("/update")
-	public Integer updateClientFolder(@RequestBody ClientFolder clientFolder, @RequestParam String referenceToSet) {
+	public ClientFolder updateClientFolder(@RequestBody ClientFolder clientFolder, @RequestParam String referenceToSet) {
 		
 		return clientFolderService.updateClientFolder(clientFolder, referenceToSet);
 	}

@@ -35,7 +35,7 @@ public class DatabaseTest {
 	
 	//@Test
 	public void saveValueTest() {
-		ClientFolder clientFolder = new ClientFolder("TestDataClient", LocalDate.now(), "TestDataReference", new ArrayList<>());
+		ClientFolder clientFolder = new ClientFolder("TestDataClient", LocalDate.now(), "TestDataReference");
 		Message message = new Message(LocalDateTime.now(), "TestDataClient", "TestMessage", Canal.SMS);
 		clientFolder.getListMessage().add(message);
 		//clientFolderDao.saveClientFolder(clientFolder);

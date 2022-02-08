@@ -38,7 +38,7 @@ public class MessageControllerTest {
 	//@Test
 	public void testNewMessage() {
 		Message message = new Message(LocalDateTime.now(), "test", "test message", "MAIL");
-		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "test", new ArrayList<>());
+		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "test");
 		clientFolder.getListMessage().add(message);
 		
 		Mockito.when(messageService.newMessage(Mockito.any(Message.class), Mockito.anyString())).thenReturn(clientFolder);
@@ -51,12 +51,12 @@ public class MessageControllerTest {
 	
 	//@Test
 	public void testUpdateClientFolder() {
-		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "testRef", new ArrayList<>());
+		ClientFolder clientFolder = new ClientFolder("test", LocalDate.now(), "testRef");
 		
 		List<ClientFolder> test = messageController.getAllClientFolder();
 		test.add(clientFolder);
 		
-		Integer result = messageController.updateClientFolder(clientFolder, "testRefBis");
+		ClientFolder result = messageController.updateClientFolder(clientFolder, "testRefBis");
 		//Assert.assertEquals(1, result);
 	}
 	

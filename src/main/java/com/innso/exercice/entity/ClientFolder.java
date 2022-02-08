@@ -38,18 +38,17 @@ public class ClientFolder {
 	private String reference;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "message_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "client_id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Message> listMessage;
 	
 	public ClientFolder() {}
 
-	public ClientFolder(String clientName, LocalDate openDate, String reference, List<Message> listMessage) {
+	public ClientFolder(String clientName, LocalDate openDate, String reference) {
 		super();
 		this.clientName = clientName;
 		this.openDate = openDate;
 		this.reference = reference;
-		this.listMessage = listMessage;
 	}
 
 	public ClientFolder(Integer id, String clientName, LocalDate openDate, String reference,
@@ -87,8 +86,8 @@ public class ClientFolder {
 	}
 
 	public List<Message> getListMessage() {
-		if(listMessage == null) {
-			return new ArrayList<>();
+		if(this.listMessage == null) {
+			listMessage = new ArrayList<>();
 		}
 		return listMessage;
 	}

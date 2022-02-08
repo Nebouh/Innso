@@ -1,7 +1,6 @@
 package com.innso.exercice.entity;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +25,12 @@ public class Message {
 	
 	@Column(name = "message")
 	private String message;
+	
+	@Column(name = "canal")
 	private Canal canal;
+
+	@Column(name = "client_id")
+	private Integer clientId;
 
 	public Message() {}
 	
